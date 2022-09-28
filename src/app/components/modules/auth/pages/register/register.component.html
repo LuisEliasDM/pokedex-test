@@ -1,0 +1,101 @@
+<div class="d-flex justify-content-center align-items-center mt-5 mb-5">
+
+    <div class="card col-6">
+        <div class="card-header">
+            REGISTER
+        </div>
+        <div class="card-body">
+            <form [formGroup]="registerForm" (submit)="register()">
+                <div class="mb-3">
+                    <label class="form-label" for="curp">CURP</label>
+                    <input
+                        class="form-control"
+                        id="curp"
+                        name="curp"
+                        type="text"
+                        transformText="curp"
+                        formControlName="curp">
+                    <show-error-form
+                        *ngIf="registerForm.get('curp')?.touched && registerForm.get('curp')?.dirty"
+                        [errors]="registerForm.get('curp')?.errors">
+                    </show-error-form>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="name">Name</label>
+                    <input
+                        class="form-control"
+                        id="name"
+                        name="name"
+                        type="text"
+                        formControlName="name"
+                        >
+                    <show-error-form
+                        *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.dirty"
+                        [errors]="registerForm.get('name')?.errors">
+                    </show-error-form>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="lastname">Lastname</label>
+                    <input
+                        class="form-control"
+                        id="lastname"
+                        name="lastname"
+                        type="text"
+                        formControlName="lastname"
+                        >
+                    <show-error-form
+                        *ngIf="registerForm.get('lastname')?.touched && registerForm.get('lastname')?.dirty"
+                        [errors]="registerForm.get('lastname')?.errors">
+                    </show-error-form>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="birth">Date of birth</label>
+                    <input
+                        class="form-control"
+                        id="birth"
+                        name="birth"
+                        type="date"
+                        formControlName="birth"
+                        >
+                    <show-error-form
+                        *ngIf="registerForm.get('birth')?.touched && registerForm.get('birth')?.dirty"
+                        [errors]="registerForm.get('birth')?.errors">
+                    </show-error-form>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="username">Username</label>
+                    <input
+                        class="form-control"
+                        id="username"
+                        name="username"
+                        type="text"
+                        transformText="positiveInteger"
+                        formControlName="username">
+                    <show-error-form
+                        *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.dirty"
+                        [errors]="registerForm.get('username')?.errors">
+                    </show-error-form>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password">Password</label>
+                    <input
+                        class="form-control"
+                        id="password"
+                        name="password"
+                        type="text"
+                        formControlName="password">
+                    <show-error-form
+                        *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.dirty"
+                        [errors]="registerForm.get('password')?.errors">
+                    </show-error-form>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-outline-primary" [disabled]="registerForm.invalid && registerForm.dirty" type="submit">
+                        SAVE
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
