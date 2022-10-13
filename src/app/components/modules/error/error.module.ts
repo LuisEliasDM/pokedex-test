@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShowErrorFormComponent } from './show-error-form/show-error-form.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    NotFoundComponent
+  ],
   imports: [
     CommonModule
   ],
   exports: [
-    ShowErrorFormComponent
+    ShowErrorFormComponent,
+    NotFoundComponent
   ]
 })
 export class ErrorModule { }

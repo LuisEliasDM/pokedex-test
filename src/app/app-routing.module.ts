@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from './components/modules/error/not-found/not-found.component';
 import { HomeComponent } from './components/modules/layout/home/home.component';
-import { AuthGuard } from './services/guard/auth.guard';
+import { AuthGuard } from './services/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -30,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '404'
+    component: NotFoundComponent
   }
 ];
 

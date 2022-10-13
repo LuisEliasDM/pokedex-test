@@ -6,25 +6,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/modules/layout/home/home.component';
 import { MainNavComponent } from './components/modules/layout/main-nav/main-nav.component';
-import { TokenInterceptor } from './services/interceptors/token.interceptor';
+import { AuthInterceptor } from './services/interceptors/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './components/modules/shared/material.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    MainNavComponent
+    MainNavComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
-  ],
-  exports: [
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
+      useClass: AuthInterceptor,
       multi: true
     }
   ],

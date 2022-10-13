@@ -1,0 +1,17 @@
+<mat-card class="example-card">
+    <mat-card-title>User profile</mat-card-title>
+    <mat-card-content class="card-content">
+        <h3>
+            <b>Curp: </b>
+            <span>{{user?.curp}}</span>
+        </h3>
+        <h3>
+            <b>Nombre: </b>
+            <span>{{user?.name}} {{user?.lastname}}</span>
+        </h3>
+        <h3>
+            <b>Age: </b>
+            <span>{{user?.birth | age}}</span>
+        </h3>
+    </mat-card-content>
+</mat-card>

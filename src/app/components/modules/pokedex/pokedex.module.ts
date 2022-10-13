@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { PokedexRoutingModule } from './pokedes-routing.module';
-import { CardComponent } from './pages/dashboard/card/card.component';
-import { ShowComponent } from './pages/show/show.component';
+import { CardComponent } from './card/card.component';
+import { ShowComponent } from './show/show.component';
 import { AlreadyHaveDirective } from 'src/app/directives/already-have.directive';
+import { MyPokemonsComponent } from './my-pokemons/my-pokemons.component';
+import { MaterialModule } from '../shared/material.module';
 
 
 
@@ -13,10 +15,12 @@ import { AlreadyHaveDirective } from 'src/app/directives/already-have.directive'
     DashboardComponent,
     CardComponent,
     ShowComponent,
-    AlreadyHaveDirective
+    AlreadyHaveDirective,
+    MyPokemonsComponent,
   ],
   imports: [
     CommonModule,
+    MaterialModule
   ],
   exports:[
     PokedexRoutingModule

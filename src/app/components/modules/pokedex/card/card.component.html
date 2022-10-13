@@ -1,0 +1,16 @@
+<!-- <div class="card h-100" [alreadyHave]="alreadyHave">
+    <ng-container *ngIf="pokemon$ | async as pokemon">
+        <img src="{{pokemon?.urlIcon}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <div class="d-flex justify-content-center">
+                <h6 class="card-title">{{pokemon?.name | uppercase}}</h6>
+            </div>
+        </div>
+    </ng-container>
+</div> -->
+
+
+<div class="container" *ngIf="pokemon$ | async as pokemon" [alreadyHave]="alreadyHave">
+    <img src="{{pokemon?.urlIcon}}" class="img" alt="...">
+    <h2 class="card-title">{{pokemon?.name | uppercase}}</h2>
+</div>

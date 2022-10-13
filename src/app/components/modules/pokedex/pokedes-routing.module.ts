@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PokemonListResolver } from 'src/app/services/resolvers/pokemon-list.resolver';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ShowComponent } from './pages/show/show.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MyPokemonsComponent } from './my-pokemons/my-pokemons.component';
+import { ShowComponent } from './show/show.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
         resolve: {
           pokemons: PokemonListResolver
         }
+      },
+      {
+        path: "my-pokemons",
+        component: MyPokemonsComponent
       },
       {
         path: "show/:id",

@@ -1,0 +1,19 @@
+.logo{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.example-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.btn-active{
+    background-color: #374591;
+}

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProfileComponent } from './pages/profile/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 import { UserRoutingModule } from './user-routing.module';
 import { AgePipe } from 'src/app/libs/pipes/age.pipe';
+import { MaterialModule } from '../shared/material.module';
 
 
 
@@ -12,7 +13,8 @@ import { AgePipe } from 'src/app/libs/pipes/age.pipe';
     AgePipe
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule
   ],
   exports: [
     UserRoutingModule

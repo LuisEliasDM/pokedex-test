@@ -1,0 +1,35 @@
+<!-- <h1>DashBoard</h1>
+<div class="row g-4 mb-5">
+  <ng-container *ngIf="pokemonsResponse$ | async as pokemons">
+    <ng-container *ngFor="let pokemon of pokemons.results">
+      <ng-container *ngIf="!profileService.alreadyHavePokemon(pokemonService.getIdFronUrl(pokemon.url))">
+        <div class="col-2 col-md-2" >
+          <pokemon-card  [pokemonUrl]="pokemon.url" (click)="showPokemon(pokemon.url)"></pokemon-card>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" (click)="changePage(pageNumber - 1)">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">{{pageNumber}}</a></li>
+      <li class="page-item"><a class="page-link" (click)="changePage(pageNumber + 1)">Next</a></li>
+    </ul>
+  </nav>
+</div> -->
+
+<h2>Store</h2>
+<ng-container *ngIf="pokemonsResponse$ | async as pokemons">
+  <mat-grid-list cols="8" rowHeight="2:2.5" gutterSize="15px" >
+    <mat-grid-tile
+        *ngFor="let pokemon of pokemons.results">
+        <pokemon-card  [pokemonUrl]="pokemon.url" (click)="showPokemon(pokemon.url)"></pokemon-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-container>
+
+<mat-button-toggle-group>
+  <mat-button-toggle (click)="changePage(pageNumber - 1)"><</mat-button-toggle>
+  <mat-button-toggle>{{pageNumber}}</mat-button-toggle>
+  <mat-button-toggle (click)="changePage(pageNumber + 1)">></mat-button-toggle>
+</mat-button-toggle-group>

@@ -1,38 +1,58 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { catchError, map, Observable, of } from 'rxjs';
+import { StorageHelper } from '../libs/helpers/storage.helper';
+import { Endpoints } from '../utils/endpoints';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService{
-  public isAuthenticated: boolean = false;
 
-  constructor() {
-    this.isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  constructor(private http: HttpClient) {
   }
 
-  login(username: string, password: string){
-    let usernameDb = localStorage.getItem("username")
-    let passwordDb = localStorage.getItem("password")
+  isAuthenticated(): boolean{
+    return StorageHelper.getSessionStatus()
+  }
 
-    if(username === usernameDb && password === passwordDb){
-      this.isAuthenticated = true;
-    }
-    localStorage.setItem("isAuthenticated", this.isAuthenticated.toString());
+  login(username: string, password: string): Observable<any>{
+    return this.http.post(Endpoints.GENERAL_URL + Endpoints.LOGIN_URL, {
+      username: username,
+      password: password
+    }).pipe(
+      catchError((error: any) => {
+        return of(false)
+      })
+    )
   }
 
   logout(){
-    this.isAuthenticated = false
-    localStorage.setItem("isAuthenticated", this.isAuthenticated.toString());
+    let isAuthenticated = false
+    StorageHelper.setSessionStatus(isAuthenticated);
+    StorageHelper.removeItem("session");
   }
 
-  register(username: string, password: string, curp: string, name: string, lastname: string, birth: string){
-    this.isAuthenticated = true
-    localStorage.setItem("username", username)
-    localStorage.setItem("password", password)
-    localStorage.setItem("curp", curp)
-    localStorage.setItem("name", name)
-    localStorage.setItem("lastname", lastname)
-    localStorage.setItem("birth", birth)
-    localStorage.setItem("isAuthenticated", this.isAuthenticated.toString());
+  register(username: string, password: string, email: string): Observable<any>{
+    return this.http.post(Endpoints.GENERAL_URL + Endpoints.REGISTER_URL, {
+      username: username,
+      password: password,
+      email: email
+    }).pipe(
+      map((response: any)=>{
+        return response.success
+      }),
+      catchError((error: any) => {
+        return of(false)
+      })
+    )
   }
+
+  refreshToken(): Observable<any>{
+    return this.http.post(Endpoints.GENERAL_URL + Endpoints.REFRESH_TOKEN_URL, {
+      session: StorageHelper.getItem("session")
+    })
+  }
+
 }

@@ -1,0 +1,26 @@
+<mat-card class="example-card">
+    <mat-card-title>LOGIN</mat-card-title>
+    <mat-card-content class="card-content">
+        <form [formGroup]="loginForm" (submit)="login()">
+            <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Username</mat-label>
+                <input type="text" matInput formControlName="username" name="username">
+            </mat-form-field>
+            <show-error-form
+                *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.dirty"
+                [errors]="loginForm.get('username')?.errors">
+            </show-error-form>
+            <br>
+            <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" name="password" type="password">
+            </mat-form-field>
+            <show-error-form
+                *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.dirty"
+                [errors]="loginForm.get('password')?.errors">
+            </show-error-form>
+            <br>
+            <button mat-raised-button [disabled]="loginForm.invalid && loginForm.dirty" type="submit"  color="primary">Login</button>
+        </form>
+    </mat-card-content>
+</mat-card>

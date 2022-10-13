@@ -24,6 +24,14 @@ export class ShowErrorFormComponent implements OnChanges {
       this.errorMessage = `Enter maximun ${this.errors?.maxlength.requiredLength} character`;
       return
     }
+    if(this.errors?.maxlength){
+      this.errorMessage = `Enter maximun ${this.errors?.maxlength.requiredLength} character`;
+      return
+    }
+    if(this.errors?.email){
+      this.errorMessage = `Enter a valid email`;
+      return
+    }
     this.errorMessage = "";
   }
 

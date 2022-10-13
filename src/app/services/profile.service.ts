@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { StorageHelper } from '../libs/helpers/storage.helper';
+import { PokemonService } from './pokemon.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,34 +10,35 @@ export class ProfileService {
   constructor() { }
 
   getUser(){
-    return {
-      username: localStorage.getItem("username"),
-      password: localStorage.getItem("password"),
-      curp: localStorage.getItem("curp"),
-      name: localStorage.getItem("name"),
-      lastname: localStorage.getItem("lastname"),
-      birth: localStorage.getItem("birth"),
-    }
+    return StorageHelper.getItem("user")
   }
 
   getUserPokemons(): number[]{
-    if(localStorage.getItem("pokemons") == null) return [];
-    return JSON.parse(localStorage.getItem("pokemons")??"");
+    let pokemons = StorageHelper.getItem("pokemons")
+    if(pokemons == null) return [];
+    return pokemons;
   }
 
   addUserPokemon(id: number){
-    let pokemons;
-    if(localStorage.getItem("pokemons") == null){
-      pokemons = [];
-    }else{
-      pokemons = JSON.parse(localStorage.getItem("pokemons")??"");
-    }
+    if(this.alreadyHavePokemon(id)) return
 
-    if(this.getUserPokemons().indexOf(id) >= 0) return;
-
+    let pokemons = this.getUserPokemons()
     pokemons.push(id)
 
-    localStorage.setItem("pokemons", JSON.stringify(pokemons))
+    StorageHelper.setItem("pokemons", pokemons)
+  }
 
+  removeUserPokemon(id: number){
+    if(!this.alreadyHavePokemon(id)) return
+
+    let pokemons = this.getUserPokemons()
+    pokemons = pokemons.filter(item => item != id)
+
+    StorageHelper.setItem("pokemons", pokemons)
+  }
+
+  alreadyHavePokemon(id: number): boolean{
+    if(this.getUserPokemons().indexOf(id) >= 0) return true;
+    return false
   }
 }
